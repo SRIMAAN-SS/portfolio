@@ -1,15 +1,4 @@
-const admin = require('firebase-admin');
-
-// Initialize Firebase Admin
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-    projectId: 'srimaan-portfolio'
-  });
-}
-
-const db = admin.firestore();
-
+// Simple contact form handler for Vercel
 export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -28,7 +17,7 @@ export default async function handler(req, res) {
 
   try {
     const payload = req.body || {};
-    const required = ['firstName', 'lastName', 'email', 'contactNumber', 'location', 'profession', 'message'];
+    const required = ['firstName', 'email', 'message'];
     
     // Validate required fields
     for (const key of required) {
@@ -37,26 +26,34 @@ export default async function handler(req, res) {
       }
     }
     
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(payload.email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
+    }
+    
     // Prepare contact data
     const contactData = {
       ...payload,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      timestamp: Date.now()
+      timestamp: new Date().toISOString(),
+      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
     };
     
-    // Save to Firestore
-    const docRef = await db.collection('contacts').add(contactData);
-    
-    console.log('✅ Contact saved to Firebase:', { id: docRef.id, ...contactData });
+    // Log the contact data (in production, you might want to save to a database)
+    console.log('✅ Contact form submitted:', contactData);
     
     res.status(201).json({
       success: true,
-      id: docRef.id,
-      message: 'Contact form submitted successfully'
+      message: 'Contact form submitted successfully',
+      data: {
+        name: `${payload.firstName} ${payload.lastName || ''}`.trim(),
+        email: payload.email,
+        timestamp: contactData.timestamp
+      }
     });
     
   } catch (error) {
-    console.error('Create contact error:', error);
-    res.status(500).json({ error: 'Failed to save contact' });
+    console.error('Contact form error:', error);
+    res.status(500).json({ error: 'Failed to process contact form' });
   }
 }
