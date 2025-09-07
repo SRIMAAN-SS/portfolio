@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Modern multi-page portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "web": "serve .",
+    "build": "echo 'No build step required'",
+    "vercel-build": "echo 'Vercel build completed'"
+  },
+  "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
+    "express": "^4.19.2",
+    "firebase": "^12.2.1",
+    "firebase-admin": "^13.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "id": "1757229913798",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "contactNumber": "9876543210",
+    "location": "Chennai",
+    "profession": "Developer",
+    "message": "This is a test message from the fixed system",
+    "createdAt": "2025-09-07T07:25:13.798Z"
+  }
+]

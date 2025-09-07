@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRIMAAN S S - Full Stack Developer | Portfolio</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="SRIMAAN S S - Full Stack Developer, Web Developer, Software Engineer. View my portfolio showcasing projects, skills, and experience in modern web development.">
+  <meta name="keywords" content="SRIMAAN S S, Full Stack Developer, Web Developer, Software Engineer, Portfolio, React, Node.js, JavaScript, Python, HTML, CSS">
+  <meta name="author" content="SRIMAAN S S">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph Meta Tags for Social Media -->
+  <meta property="og:title" content="SRIMAAN S S - Full Stack Developer | Portfolio">
+  <meta property="og:description" content="Full Stack Developer specializing in modern web technologies. View my portfolio and get in touch for collaboration opportunities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://srimaan-portfolio.web.app">
+  <meta property="og:image" content="https://srimaan-portfolio.web.app/images/my%20image%20.jpg">
+  <meta property="og:site_name" content="SRIMAAN S S Portfolio">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SRIMAAN S S - Full Stack Developer | Portfolio">
+  <meta name="twitter:description" content="Full Stack Developer specializing in modern web technologies. View my portfolio and get in touch for collaboration opportunities.">
+  <meta name="twitter:image" content="https://srimaan-portfolio.web.app/images/my%20image%20.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://srimaan-portfolio.web.app">
+  
+  <!-- Favicon and Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, addDoc, getDocs, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+    import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js';
+    
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyApGcKw0lsSjOhqBIlgNu0ehtUITSkXuSk",
+      authDomain: "srimaan-portfolio.firebaseapp.com",
+      projectId: "srimaan-portfolio",
+      storageBucket: "srimaan-portfolio.firebasestorage.app",
+      messagingSenderId: "95336682425",
+      appId: "1:95336682425:web:3084b30e15433658fbdc68"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const messaging = getMessaging(app);
+    
+    // Make Firebase available globally
+    window.firebaseApp = app;
+    window.firebaseDb = db;
+    window.firebaseMessaging = messaging;
+    
+    console.log('✅ Firebase initialized on client side');
+  </script>
+</head>
+<body>
+  <!-- Background Animation -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
+  </div>
+  
+  <div id="loading-overlay">
+    <div class="loading-content">
+      <div class="loader-visual">
+        <span class="earth-icon">
+          <svg class="earth-svg" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#1a237e" stroke="#00b4d8" stroke-width="4"/>
+            <ellipse cx="50" cy="50" rx="40" ry="48" fill="#1976d2" fill-opacity="0.7"/>
+            <path d="M50 10 Q60 30 80 40 Q70 60 50 70 Q30 60 20 40 Q40 30 50 10 Z" fill="#caf0f8" fill-opacity="0.8"/>
+            <path d="M50 90 Q60 70 80 60 Q70 40 50 30 Q30 40 20 60 Q40 70 50 90 Z" fill="#90e0ef" fill-opacity="0.7"/>
+            <ellipse cx="60" cy="40" rx="8" ry="4" fill="#00b4d8" fill-opacity="0.7"/>
+            <ellipse cx="40" cy="60" rx="6" ry="3" fill="#00b4d8" fill-opacity="0.7"/>
+          </svg>
+        </span>
+        <span class="moon-orbit">
+          <svg class="moon-svg" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="8" fill="#f5f3ce" stroke="#bdb76b" stroke-width="1.2"/>
+            <ellipse cx="12" cy="7" rx="1.1" ry="0.7" fill="#e0e0a0"/>
+            <ellipse cx="6" cy="12" rx="0.7" ry="0.4" fill="#e0e0a0"/>
+          </svg>
+        </span>
+      </div>
+      <div class="loading-percent" id="loading-percent">0%</div>
+    </div>
+    <audio id="netflix-sound" preload="auto" src="audio/f1-151254.mp3"></audio>
+  </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-text">SRIMAAN</span>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-greeting">Hello, I'm</div>
+            <h1 class="hero-title">
+              <span class="highlight">SRIMAAN S S</span>
+            </h1>
+            <h2 class="hero-subtitle">Full-Stack Developer & UI/UX Designer</h2>
+            <p class="hero-description">
+              A passionate developer crafting beautiful web experiences with modern technologies. 
+              I specialize in building scalable applications, creating intuitive user interfaces, 
+              and delivering exceptional digital solutions that make a difference.
+            </p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                View My Work
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 2L11 13"/>
+                  <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                </svg>
+                Get In Touch
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="hero-stat-number">5+</span>
+                <span class="hero-stat-label">Projects</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat-number">2+</span>
+                <span class="hero-stat-label">Years</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat-number">10+</span>
+                <span class="hero-stat-label">Technologies</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="image-container">
+              <img src="images/my image .jpg" alt="SRIMAAN S S" class="profile-image">
+              <div class="image-overlay"></div>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=srimaan262004@gmail.com&su=Portfolio%20Inquiry&body=Hello%20SRIMAAN,%0A%0AI%20am%20interested%20in%20your%20services.%20Please%20contact%20me%20at%20your%20earliest%20convenience.%0A%0ABest%20regards," class="social-link" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+          <a href="tel:+919384738622" class="social-link" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 21 18.91V21z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/srimaan-ss-39a710227/" class="social-link" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2"/>
+              <line x1="7" y1="10" x2="7" y2="17"/>
+              <line x1="7" y1="7" x2="7" y2="7"/>
+              <line x1="12" y1="17" x2="12" y2="13"/>
+              <line x1="12" y1="13" x2="15" y2="13"/>
+              <line x1="15" y1="13" x2="15" y2="17"/>
+            </svg>
+          </a>
+          <a href="https://github.com/SRIMAAN-SS" class="social-link" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">Get to know me better</p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>I'm Srimaan SS, a passionate web developer</h3>
+            <p>
+              I'm a passionate and curious web developer who enjoys turning ideas into interactive digital experiences. 
+              I specialize in building clean, responsive websites using modern web technologies. 
+              Creativity and logic drive my work, and I'm always exploring ways to improve user experience.
+            </p>
+            <p>
+              Currently pursuing my MCA, I'm constantly learning and evolving in the tech space. 
+              I enjoy collaborating on projects that challenge me and help me grow. 
+              Whether it's frontend or backend, I love bringing concepts to life with code.
+            </p>
+            <div class="about-stats">
+              <div class="stat">
+                <h4>2+</h4>
+                <p>Years Experience</p>
+              </div>
+              <div class="stat">
+                <h4>5+</h4>
+                <p>Projects Completed</p>
+              </div>
+              <div class="stat">
+                <h4>10+</h4>
+                <p>Technologies</p>
+              </div>
+            </div>
+            <div class="about-buttons">
+              <a href="RESUME WD,SE.pdf" class="btn btn-primary" download>
+                <svg viewBox="0 0 20 20" width="20" height="20">
+                  <path d="M10 2v10m0 0l-4-4m4 4l4-4M4 16h12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Download Resume
+              </a>
+              <button class="btn btn-secondary" id="view-resume-btn" type="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                View Resume
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="resume-viewer" id="resume-viewer" style="display:none;">
+          <div class="resume-modal">
+            <div class="resume-header">
+              <h3>My Resume</h3>
+              <button class="close-resume-btn" id="close-resume-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+            <div class="resume-content">
+              <div class="resume-actions">
+                <a href="RESUME WD,SE.pdf" download class="resume-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7,10 12,15 17,10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download PDF
+                </a>
+                <a href="RESUME WD,SE.pdf" target="_blank" class="resume-action-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15,3 21,3 21,9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                  Open in New Tab
+                </a>
+              </div>
+              <div class="resume-preview">
+                <iframe src="RESUME WD,SE.pdf" width="100%" height="100%" style="border: none; border-radius: 8px;"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">My Projects</h2>
+          <p class="section-subtitle">Some of my recent work</p>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card" data-project="1">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <button class="view-details">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>E-Cramming</h3>
+              <p>Smart e-learning platform for last-minute cramming with interactive features and progress tracking.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-card" data-project="2">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <button class="view-details">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Blood Sync</h3>
+              <p>Real-time app connecting blood donors and recipients with location-based matching system.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Socket.io</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-card" data-project="3">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <button class="view-details">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Parking Management System</h3>
+              <p>Automated web-based vehicle parking management with real-time slot tracking and payment integration.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-card" data-project="4">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <button class="view-details">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Hand Cricket</h3>
+              <p>Interactive web-based hand cricket game with score tracking and multiplayer support.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-card" data-project="5">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <button class="view-details">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Air Pollution Monitoring Drone</h3>
+              <p>IoT-driven air quality monitoring system with real-time data visualization and alert system.</p>
+              <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">WebSocket</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project Modal -->
+      <div id="project-detail-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div id="project-detail-content"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Skills & Technologies</h2>
+          <p class="section-subtitle">Technologies I work with</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3>Frontend</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon">🌐</div>
+                <div class="skill-info">
+                  <h4>HTML5</h4>
+                  <p>Semantic markup, accessibility, SEO</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-info">
+                  <h4>CSS3</h4>
+                  <p>Flexbox, Grid, Animations</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-info">
+                  <h4>JavaScript</h4>
+                  <p>ES6+, DOM, Fetch API</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">⚛️</div>
+                <div class="skill-info">
+                  <h4>React</h4>
+                  <p>Hooks, State, Components</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Backend</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon">🐍</div>
+                <div class="skill-info">
+                  <h4>Python</h4>
+                  <p>Scripting, Data Analysis</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">☕</div>
+                <div class="skill-info">
+                  <h4>Java</h4>
+                  <p>OOP, Collections</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">🗄️</div>
+                <div class="skill-info">
+                  <h4>SQL</h4>
+                  <p>Database Queries, Joins</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">🍃</div>
+                <div class="skill-info">
+                  <h4>MongoDB</h4>
+                  <p>NoSQL, Aggregation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category">
+            <h3>Tools & Others</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon">🔧</div>
+                <div class="skill-info">
+                  <h4>Git</h4>
+                  <p>Version Control, GitHub</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <div class="skill-info">
+                  <h4>Responsive Design</h4>
+                  <p>Mobile-first approach</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">🚀</div>
+                <div class="skill-info">
+                  <h4>Performance</h4>
+                  <p>Optimization, SEO</p>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">🔒</div>
+                <div class="skill-info">
+                  <h4>Security</h4>
+                  <p>Best practices, Authentication</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Education Section -->
+    <section id="education" class="education-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Education & Experience</h2>
+          <p class="section-subtitle">My academic journey and professional experience</p>
+        </div>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <img src="images/PSG_College_of_Technology_logo.png" alt="PSG College of Technology" class="timeline-img">
+                <div class="timeline-info">
+                  <h3>Master of Computer Applications</h3>
+                  <p class="timeline-company">PSG College of Technology, Coimbatore</p>
+                  <span class="timeline-date">2024 - 2026</span>
+                </div>
+              </div>
+              <p class="timeline-description">Currently pursuing MCA with focus on advanced computer applications and software development.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <img src="images/hicas.png" alt="Hindusthan College of Arts and Science" class="timeline-img">
+                <div class="timeline-info">
+                  <h3>BSc Computer Science with Cognitive System</h3>
+                  <p class="timeline-company">Hindusthan College of Arts and Science, Coimbatore</p>
+                  <span class="timeline-date">2021 - 2024</span>
+                </div>
+              </div>
+              <p class="timeline-description">Graduated with specialization in Computer Science and Cognitive Systems, building strong foundation in programming and AI concepts.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <img src="images/narayana.png" alt="Narayana E-Techno" class="timeline-img">
+                <div class="timeline-info">
+                  <h3>12th Grade - Science Stream</h3>
+                  <p class="timeline-company">Narayana E-Techno, Chennai</p>
+                  <span class="timeline-date">2020 - 2021</span>
+                </div>
+              </div>
+              <p class="timeline-description">Completed higher secondary education with focus on Mathematics, Physics, and Chemistry.</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <img src="images/narayana.png" alt="Narayana Olympiad School" class="timeline-img">
+                <div class="timeline-info">
+                  <h3>10th Grade</h3>
+                  <p class="timeline-company">Narayana Olympiad School, Bangalore</p>
+                  <span class="timeline-date">2018 - 2019</span>
+                </div>
+              </div>
+              <p class="timeline-description">Completed secondary education with excellent academic performance.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Internships -->
+        <div class="internships-section">
+          <h3 class="subsection-title">Professional Experience</h3>
+          <div class="internships-grid">
+            <div class="internship-card">
+              <div class="internship-header">
+                <h4>UI/UX Designer Intern</h4>
+                <span class="internship-duration">March 2025 - June 2025</span>
+              </div>
+              <p class="internship-company">Duhzine IT Solutions</p>
+              <p class="internship-description">Worked on developing web applications, collaborating with the frontend team, and optimizing code for performance.</p>
+            </div>
+            
+            <div class="internship-card">
+              <div class="internship-header">
+                <h4>Java Programming Intern</h4>
+                <span class="internship-duration">August 2024 - October 2024</span>
+              </div>
+              <p class="internship-company">Ruddo Education Solutions Pvt Ltd</p>
+              <p class="internship-description">Completed a 3-month intensive internship in Java Programming, focusing on object-oriented programming and software development best practices.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-subtitle">Let's work together on your next project</p>
+        </div>
+        
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Let's Connect</h3>
+            <p>I'm always interested in new opportunities and exciting projects. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div class="contact-text">
+                  <h4>Email</h4>
+                  <p>srimaan262004@gmail.com</p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 21 18.91V21z"/>
+                  </svg>
+                </div>
+                <div class="contact-text">
+                  <h4>Phone</h4>
+                  <p>+91 9384738622</p>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2"/>
+                    <line x1="7" y1="10" x2="7" y2="17"/>
+                    <line x1="7" y1="7" x2="7" y2="7"/>
+                    <line x1="12" y1="17" x2="12" y2="13"/>
+                    <line x1="12" y1="13" x2="15" y2="13"/>
+                    <line x1="15" y1="13" x2="15" y2="17"/>
+                  </svg>
+                </div>
+                <div class="contact-text">
+                  <h4>LinkedIn</h4>
+                  <p>srimaan-ss-39a710227</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <form id="contact-form" class="contact-form" autocomplete="off">
+            <div class="form-group">
+              <div class="form-row">
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-row">
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="contactNumber" placeholder="Phone Number" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="form-row">
+                <input type="text" name="location" placeholder="Location" required>
+                <select name="profession" required>
+                  <option value="" disabled selected>Profession</option>
+                  <option value="Student">Student</option>
+                  <option value="Developer">Developer</option>
+                  <option value="Designer">Designer</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <input type="url" name="linkedin" placeholder="LinkedIn URL (optional)">
+            </div>
+            
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+              </svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer aria-label="Footer">
+    &copy; <span id="year"></span>srimaan. All rights reserved.
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html> 
